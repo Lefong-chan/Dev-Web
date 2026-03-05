@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FF Name Finder - MENA Server</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: Arial, sans-serif;
+    display: flex; justify-content: center; align-items: center;
+    height: 100vh; margin: 0;
+}
+.card {
+    background: #161b22;
+    padding: 2rem; border-radius: 10px;
+    width: 320px; text-align: center;
+    border: 1px solid #30363d;
+}
+.input-box { display: flex; gap: 5px; margin-top: 20px; }
+input {
+    flex: 1; padding: 10px; border-radius: 5px;
+    border: 1px solid #30363d; background: #0d1117; color: white;
+}
+button {
+    background: #238636; color: white; border: none;
+    padding: 10px; border-radius: 5px; cursor: pointer;
+}
+.result-box {
+    margin-top: 20px; padding: 15px;
+    background: #21262d; border-radius: 5px;
+}
+.nickname { font-size: 1.5rem; color: #58a6ff; font-weight: bold; margin: 10px 0; }
+.hidden { display: none; }
+.error { color: #f85149; font-size: 0.9rem; margin-top: 10px; }
+.loader {
+    border: 3px solid #30363d; border-top: 3px solid #58a6ff;
+    border-radius: 50%; width: 25px; height: 25px;
+    animation: spin 1s linear infinite; margin: 20px auto;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Free Fire Name Finder</h2>
+        <p>Hizaha ny anaran'ny UID (Server MENA)</p>
+        
+        <div class="input-box">
+            <input type="text" id="uidInput" placeholder="Ampidiro ny UID...">
+            <button onclick="checkID()" id="btnSearch">Hizaha</button>
+        </div>
+
+        <div id="loader" class="loader hidden"></div>
+
+        <div id="resultBox" class="result-box hidden">
+            <span>Anaran'ny mpilalao:</span>
+            <div id="playerName" class="nickname">---</div>
+            <button class="copy-btn" onclick="copyName()">Adika (Copy)</button>
+        </div>
+
+        <p id="errorMessage"class="error"></p>
+    </div>
+
+    <script>
+async function checkID() {
+    const uid = document.getElementById('uidInput').value;
+    const resultBox = document.getElementById('resultBox');
+    const playerName = document.getElementById('playerName');
+    const errorMsg = document.getElementById('errorMessage');
+    const loader = document.getElementById('loader');
+
+    if (!uid) {
+        errorMsg.innerText = "Azafady, ampidiro ny UID!";
+        return;
+    }
+
+    // Reset fisehoana
+    errorMsg.innerText = "";
+    resultBox.classList.add('hidden');
+    loader.classList.remove('hidden');
+
+    try {
+        // Miantso ilay API novononinao teo
+        const response = await fetch(`/api/check?uid=${uid}`);
+        const data = await response.json();
+
+        loader.classList.add('hidden');
+
+        if (data.success) {
+            playerName.innerText = data.nickname;
+            resultBox.classList.remove('hidden');
+        } else {
+            errorMsg.innerText = data.error || "Tsy hita io UID io.";
+        }
+    } catch (err) {
+        loader.classList.add('hidden');
+        errorMsg.innerText = "Nisy olana ny fifandraisana (Server Error).";
+    }
+}
+
+function copyName() {
+    const name = document.getElementById('playerName').innerText;
+    navigator.clipboard.writeText(name);
+    alert("Voadika ny anarana: " + name);
+}
+
+    </script>
+</body>
+</html>
