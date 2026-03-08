@@ -3,111 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FF Name Finder - MENA Server</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Inscription - Tompon-daka</title>
     <style>
-body {
-    background: #0d1117;
-    color: #c9d1d9;
-    font-family: Arial, sans-serif;
-    display: flex; justify-content: center; align-items: center;
-    height: 100vh; margin: 0;
-}
-.card {
-    background: #161b22;
-    padding: 2rem; border-radius: 10px;
-    width: 320px; text-align: center;
-    border: 1px solid #30363d;
-}
-.input-box { display: flex; gap: 5px; margin-top: 20px; }
-input {
-    flex: 1; padding: 10px; border-radius: 5px;
-    border: 1px solid #30363d; background: #0d1117; color: white;
-}
-button {
-    background: #238636; color: white; border: none;
-    padding: 10px; border-radius: 5px; cursor: pointer;
-}
-.result-box {
-    margin-top: 20px; padding: 15px;
-    background: #21262d; border-radius: 5px;
-}
-.nickname { font-size: 1.5rem; color: #58a6ff; font-weight: bold; margin: 10px 0; }
-.hidden { display: none; }
-.error { color: #f85149; font-size: 0.9rem; margin-top: 10px; }
-.loader {
-    border: 3px solid #30363d; border-top: 3px solid #58a6ff;
-    border-radius: 50%; width: 25px; height: 25px;
-    animation: spin 1s linear infinite; margin: 20px auto;
-}
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction: column; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 350px; text-align: center; }
+        h2 { color: #1976d2; margin-bottom: 20px; }
+        input { margin-bottom: 15px; padding: 12px; width: 100%; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; outline: none; }
+        input:focus { border-color: #2196f3; }
+        button { padding: 12px; width: 100%; cursor: pointer; background: #2196f3; color: white; border: none; border-radius: 6px; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #1976d2; }
+        .toggle-btn { color: #2196f3; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 15px; display: inline-block; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 25px 0; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2>Free Fire Name Finder</h2>
-        <p>Hizaha ny anaran'ny UID (Server MENA)</p>
-        
-        <div class="input-box">
-            <input type="text" id="uidInput" placeholder="Ampidiro ny UID...">
-            <button onclick="checkID()" id="btnSearch">Hizaha</button>
-        </div>
 
-        <div id="loader" class="loader hidden"></div>
-
-        <div id="resultBox" class="result-box hidden">
-            <span>Anaran'ny mpilalao:</span>
-            <div id="playerName" class="nickname">---</div>
-            <button class="copy-btn" onclick="copyName()">Adika (Copy)</button>
-        </div>
-
-        <p id="errorMessage"class="error"></p>
+    <div class="container" id="regBox">
+        <h2>Fisoratana anarana</h2>
+        <form id="registerForm">
+            <input type="text" id="regNom" placeholder="Anarana (Pseudo)" required>
+            <input type="email" id="regEmail" placeholder="Email" required>
+            <input type="password" id="regPassword" placeholder="Teny miafina" required>
+            <input type="password" id="regRepeatPassword" placeholder="Hamafiso ny teny miafina" required>
+            <button type="submit">Hamorona kaonty</button>
+        </form>
+        <span class="toggle-btn" onclick="toggleForm()">Efa manana kaonty? Hiditra</span>
     </div>
 
-    <script>
-async function checkID() {
-    const uid = document.getElementById('uidInput').value;
-    const resultBox = document.getElementById('resultBox');
-    const playerName = document.getElementById('playerName');
-    const errorMsg = document.getElementById('errorMessage');
-    const loader = document.getElementById('loader');
+    <div class="container" id="loginBox" style="display: none;">
+        <h2>Fidirana</h2>
+        <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Email" required>
+            <input type="password" id="loginPassword" placeholder="Teny miafina" required>
+            <button type="submit">Hiditra</button>
+        </form>
+        <span class="toggle-btn" onclick="toggleForm()">Mbola tsy manana kaonty? Hisoratra</span>
+    </div>
 
-    if (!uid) {
-        errorMsg.innerText = "Azafady, ampidiro ny UID!";
-        return;
+    <script type="importmap">
+    {
+      "imports": {
+        "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+        "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+        "firebase/database": "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"
+      }
     }
+    </script>
 
-    // Reset fisehoana
-    errorMsg.innerText = "";
-    resultBox.classList.add('hidden');
-    loader.classList.remove('hidden');
+    <script type="module">
+        import { initializeApp } from "firebase/app";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+        import { getDatabase, ref, set } from "firebase/database";
 
-    try {
-        // Miantso ilay API novononinao teo
-        const response = await fetch(`/api/check?uid=${uid}`);
-        const data = await response.json();
+        // --- CONFIGURATION FIREBASE (Projet: Fanorona) ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyCf_AYMYMeLrKFAAchyyL4h46CJr49YDEU",
+            authDomain: "fanorona-6e2eb.firebaseapp.com",
+            projectId: "fanorona-6e2eb",
+            storageBucket: "fanorona-6e2eb.firebasestorage.app",
+            messagingSenderId: "853315152359",
+            appId: "1:853315152359:web:70e26104d4b992957eb542",
+            measurementId: "G-5VGT69TEYX",
+            // Nampiana ny databaseURL ho an'ny Fanorona
+            databaseURL: "https://fanorona-6e2eb-default-rtdb.firebaseio.com"
+        };
 
-        loader.classList.add('hidden');
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
 
-        if (data.success) {
-            playerName.innerText = data.nickname;
-            resultBox.classList.remove('hidden');
-        } else {
-            errorMsg.innerText = data.error || "Tsy hita io UID io.";
-        }
-    } catch (err) {
-        loader.classList.add('hidden');
-        errorMsg.innerText = "Nisy olana ny fifandraisana (Server Error).";
-    }
-}
+        // --- INSCRIPTION (Mamorona kaonty) ---
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nom = document.getElementById('regNom').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const repeat = document.getElementById('regRepeatPassword').value;
 
-function copyName() {
-    const name = document.getElementById('playerName').innerText;
-    navigator.clipboard.writeText(name);
-    alert("Voadika ny anarana: " + name);
-}
+            if (password !== repeat) return alert("Tsy mitovy ny teny miafina roa tonta!");
+            if (password.length < 6) return alert("Tsy maintsy farafahakeliny 6 litera ny teny miafina!");
 
+            try {
+                // 1. Mamorona mpampiasa ao amin'ny Firebase Auth
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // 2. Manampy ny anarany (displayName)
+                await updateProfile(user, { displayName: nom });
+
+                // 3. Mitahiry ny mombamomba azy ao amin'ny Database
+                // Mba ho hita izy rehefa misy mikaroka ny UID-ny
+                await set(ref(db, 'users/' + user.uid), {
+                    displayName: nom,
+                    uid: user.uid,
+                    email: email,
+                    created_at: Date.now(),
+                    status: "online"
+                });
+
+                alert("Arahabaina! Tafiditra ianao.");
+                // Mandefa azy any amin'ny pejy fandraisana
+                window.location.href = "home.html"; 
+
+            } catch (error) {
+                console.error("Hadisoana:", error.code);
+                if (error.code === 'auth/email-already-in-use') alert("Efa misy mampiasa io Email io!");
+                else alert("Nisy hadisoana: " + error.message);
+            }
+        });
+
+        // --- LOGIN (Miditra amin'ny kaonty efa misy) ---
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.location.href = "home.html"; // Mandefa azy any amin'ny home
+            } catch (error) {
+                console.error("Hadisoana:", error.code);
+                alert("Tsy mety ny Email na ny teny miafina!");
+            }
+        });
+
+        // Fonction ho an'ny switch eo amin'ny form roa
+        window.toggleForm = () => {
+            const reg = document.getElementById('regBox');
+            const log = document.getElementById('loginBox');
+            if(reg.style.display === "none") {
+                reg.style.display = "block";
+                log.style.display = "none";
+            } else {
+                reg.style.display = "none";
+                log.style.display = "block";
+            }
+        };
     </script>
 </body>
-</html>
+    </html>
+    
