@@ -654,6 +654,21 @@
 
 <body>
 <style>
+/* Navbar mobile: miafina amin'ny fotoana default, JS no mifehy */
+@media (max-width: 1199px) {
+  #bs-example-navbar-collapse-1 {
+    display: block !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+    transition: max-height 400ms ease, visibility 0s linear 400ms !important;
+  }
+  #bs-example-navbar-collapse-1.nav-open {
+    max-height: 500px !important;
+    visibility: visible !important;
+    transition: max-height 400ms ease, visibility 0s linear 0s !important;
+  }
+}
 @media (max-width: 1499px) {
 	.dash_tp_menu_area .navbar.navbar-default .nav.navbar-nav li {
 		margin-right: 3px;
@@ -836,39 +851,39 @@
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse1" class="">What is litepick.io?</a></h4>
 					</div>
-					<div id="collapse1" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">Litepick.io is an Free LTC faucet that enables users the ability to earn free LTC every hour. You are able solve captchas in order to accrue these LTC.<br> Litepick.io also provides a platform includes fair games that help you play to earn more LTC faster.</p>
+					<div id="collapse1" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">Litepick.io is an Free LTC faucet that enables users the ability to earn free LTC every hour. You are able solve captchas in order to accrue these LTC.<br> Litepick.io also provides a platform includes fair games that help you play to earn more LTC faster.</p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse2" class="">How to SIGN UP?</a></h4>
 					</div>
-					<div id="collapse2" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">It is very easy go to <b><a target="_blank">SIGN UP </a></b> section at the top menu and you are ready to go!</p><div class="panel-body" style="padding-top: 0px;"><ul style="list-style-type: square; margin-left: 10px;"><li>Type your user name that you want to use it.</li><li>Type your e-mail addresses.</li><li>Enter and retype your password.</li><li>Enter captcha that the website displays.</li><li>Click the button “Sign Up”.</li></ul></div><p>Your login information will be encrypted and protected. No one can know these information.</p>
+					<div id="collapse2" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">It is very easy go to <b><a target="_blank">SIGN UP </a></b> section at the top menu and you are ready to go!</p><div class="panel-body" style="padding-top: 0px;"><ul style="list-style-type: square; margin-left: 10px;"><li>Type your user name that you want to use it.</li><li>Type your e-mail addresses.</li><li>Enter and retype your password.</li><li>Enter captcha that the website displays.</li><li>Click the button “Sign Up”.</li></ul></div><p>Your login information will be encrypted and protected. No one can know these information.</p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse3" class="">How can I earn from Litepick.io?</a></h4>
 					</div>
-					<div id="collapse3" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">You can claim Free LTC every hours by solving captchas.<br>You can play games to earn more and multiply your LTC. Our games use provably fair mechanism to enable the player to verify each roll result and make sure they are not being cheated!</p>
+					<div id="collapse3" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">You can claim Free LTC every hours by solving captchas.<br>You can play games to earn more and multiply your LTC. Our games use provably fair mechanism to enable the player to verify each roll result and make sure they are not being cheated!</p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse4" class="">What is "provably fair"?</a></h4>
 					</div>
-					<div id="collapse4" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">The terminology "Provably Fair" arose from the development of the Blockchain technology, during the rise of LTC is based upon.<br>For the "gamer" it mean a  revolution in such never-before-imagined things such as: <br><br>+ fair playing.<br>+ accountability. <br>+ guaranteed anti-cheating.<br>+ instant payouts. <br>+ public ledger.<br><br> Litepick.io allow the public to see how outcomes are based on the gambler`s input and a secret number that is disclosed and changed for the next rounds every hour for example. This ensures the security to online gamblers to verify if the their`s dice roll or card game.</p>	
+					<div id="collapse4" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">The terminology "Provably Fair" arose from the development of the Blockchain technology, during the rise of LTC is based upon.<br>For the "gamer" it mean a  revolution in such never-before-imagined things such as: <br><br>+ fair playing.<br>+ accountability. <br>+ guaranteed anti-cheating.<br>+ instant payouts. <br>+ public ledger.<br><br> Litepick.io allow the public to see how outcomes are based on the gambler`s input and a secret number that is disclosed and changed for the next rounds every hour for example. This ensures the security to online gamblers to verify if the their`s dice roll or card game.</p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse5" class="">How to verifying your game results?</a></h4>
 					</div>
-					<div id="collapse5" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
+					<div id="collapse5" class="panel-collapse collapse" style="margin-left: 15px;">
 						<div class="panel-body">It is very easy to verify your game results: <br /><b>Step 1:</b> <br />On your bet history, click "<i class="fas fa-dice"></i>Dice" item in the row that you want to verify. Your choices that you played will show in a dialog named "Bet Info".<br /><b>Step 2:</b> <br />Click "Verify" button in "Bet Info" dialog to see Provably fair tool in a new tab. In this tab you can see all detail information about game result such as sever seed, server seed hash, client seed.<br />Then you can compare it with you Bet Info to see if it is match or not.</div>
 					</div>
 				</div>
@@ -876,87 +891,88 @@
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse6" class="">How to play?</a></h4>
 					</div>
-					<div id="collapse6" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">It`s very simple to play. Please click "<i class="fas fa-book"></i> Rule" Item that place below game board to see the rule of each game. </p>
+					<div id="collapse6" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">It`s very simple to play. Please click "<i class="fas fa-book"></i> Rule" Item that place below game board to see the rule of each game. </p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse7" class="">How to deposit?</a></h4>
 					</div>
-					<div id="collapse7" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">You can click Deposit section in top menu or visit:<a href="deposit.php"> this address</a>.</p><p>Your deposit address is show on page or you can scan QR code to see it.<br> You can send as many LTC as you would like to this address. The amount will be credited to your account after it has confirmation. We have no minimum deposit amount, we accept and credit all deposits to your account!</p>
+					<div id="collapse7" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">You can click Deposit section in top menu or visit:<a href="deposit.php"> this address</a>.</p><p>Your deposit address is show on page or you can scan QR code to see it.<br> You can send as many LTC as you would like to this address. The amount will be credited to your account after it has confirmation. We have no minimum deposit amount, we accept and credit all deposits to your account!</p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse8" class="">How to withdraw?</a></h4>
 					</div>
-					<div id="collapse8" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">You can click Withdraw section in top menu or visit:<a href="withdraw.php"> this address</a>.</p><p>- Enter the LTC wallet address and amount of LTC you want to withdraw then press the "Withdraw" button.<br>- If you are not enable 2FA verifycation then you need to confirm the withdrawal request via email before it is completed.<br>- Please check your mail or spam folder to see "confirm withdrawal verification" email that sent from our website.<br>- Then click on the link in this email to complete your withdrawal request.</p>
+					<div id="collapse8" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">You can click Withdraw section in top menu or visit:<a href="withdraw.php"> this address</a>.</p><p>- Enter the LTC wallet address and amount of LTC you want to withdraw then press the "Withdraw" button.<br>- If you are not enable 2FA verifycation then you need to confirm the withdrawal request via email before it is completed.<br>- Please check your mail or spam folder to see "confirm withdrawal verification" email that sent from our website.<br>- Then click on the link in this email to complete your withdrawal request.</p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse9" class="">How to level up?</a></h4>
 					</div>
-					<div id="collapse9" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-				  </div>
+					<div id="collapse9" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"></div>
+					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse10" class="">How much do I earn from my affiliates?</a></h4>
 					</div>
-					<div id="collapse10" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">When your users reach level Bronze, you will receive the following commission:<br/>- You will receive 50% commission on total LTC that your user earn from LTC faucets.<br/>- And still 0.4% of the total profit when they play on games.<br/>- You can also get 5% of the gifcard value your user applied.</p>
+					<div id="collapse10" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">When your users reach level Bronze, you will receive the following commission:<br/>- You will receive 50% commission on total LTC that your user earn from LTC faucets.<br/>- And still 0.4% of the total profit when they play on games.<br/>- You can also get 5% of the gifcard value your user applied.</p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse11" class="" aria-expanded="true">Where can I see my referral link?</a></h4>
 					</div>
-					<div id="collapse11" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">By clicking on the <b> <a href="affiliates.php" target="_blank">Affiliates</a></b> section at the top menu.</p>
+					<div id="collapse11" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">By clicking on the <b> <a href="affiliates.php" target="_blank">Affiliates</a></b> section at the top menu.</p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse12" class="">How do I refer my friends?</a></h4>
 					</div>
-					<div id="collapse12" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">Share your referral link with your friends and ask them to visit it and create an account. On doing so, they will be automatically added as your affiliates and you will get 50% of their free LTC winnings as commission!<br>Nothing will be deducted from their account, we pay the 50% out of our pocket! If you do not know how to get your referral link, please see the question above.</p>
+					<div id="collapse12" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">Share your referral link with your friends and ask them to visit it and create an account. On doing so, they will be automatically added as your affiliates and you will get 50% of their free LTC winnings as commission!<br>Nothing will be deducted from their account, we pay the 50% out of our pocket! If you do not know how to get your referral link, please see the question above.</p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse13" class="">What types of emails are supported?</a></h4>
 					</div>
-					<div id="collapse13" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">We only support accounts registration by email of some of the providers below:<br>Gmail.<br>Outlook Mail.<br>Yahoo Mail.<br>iCloud Mail.<br>AOL Mail.<br>Zoho Mail.<br>GMX Mail.<br>Yandex.Mail.<br>Mail.com.<br>Hot Mail.<br>Inbox Mail.<br><br>The use of temporary emails to register is a policy violation.</p>
+					<div id="collapse13" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">We only support accounts registration by email of some of the providers below:<br>Gmail.<br>Outlook Mail.<br>Yahoo Mail.<br>iCloud Mail.<br>AOL Mail.<br>Zoho Mail.<br>GMX Mail.<br>Yandex.Mail.<br>Mail.com.<br>Hot Mail.<br>Inbox Mail.<br><br>The use of temporary emails to register is a policy violation.</p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse14" class="">I have lost/wish to reset my password?</a></h4>
 					</div>
-					<div id="collapse14" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">- Please go to the <a href="https://litepick.io/">login</a> page and click on the link that says <b>Forgot Password</b> below the login box OR visit <a href="recover.php">this address</a>.<br>- Enter your email that you used to register and click "Recover Password" button. <br>- A "Recover password" email will be sent to your email address. Please check your mail box and follow instructions in the email. </p>
+					<div id="collapse14" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">- Please go to the <a href="https://litepick.io/">login</a> page and click on the link that says <b>Forgot Password</b> below the login box OR visit <a href="recover.php">this address</a>.<br>- Enter your email that you used to register and click "Recover Password" button. <br>- A "Recover password" email will be sent to your email address. Please check your mail box and follow instructions in the email. </p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse15" class="">How can I keep my account secure?</a></h4>
 					</div>
-					<div id="collapse15" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">By using a strong password, not re-using the same password on any other website and not sharing your password with anybody else.<br />We recommend enable 2FA (2-Factor Authentication), <b>2-Factor Authentication</b> enhances the security of your account by requiring verification, using your phone, when signing in or withdrawing funds. <br />If you do not use these security practices and your account gets hacked, we shall not be able to help you.</p>
+					<div id="collapse15" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">By using a strong password, not re-using the same password on any other website and not sharing your password with anybody else.<br />We recommend enable 2FA (2-Factor Authentication), <b>2-Factor Authentication</b> enhances the security of your account by requiring verification, using your phone, when signing in or withdrawing funds. <br />If you do not use these security practices and your account gets hacked, we shall not be able to help you.</p></div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title active"><a href="#collapse16" class="">How can I contact you?</a></h4>
 					</div>
-					<div id="collapse16" class="panel-collapse collapse" style="margin-left: 15px; margin-top: 20px;">
-						<p style="text-align: left;">By filling in the form at <a href="contact.php" target="_blank">Contact page</a> or contacting us via <a href="contact.php" target="_blank"><span class="__cf_email__">[email&#160;protected]</span></a>. Please read the questions above before sending us an email. We have a policy of not responding to emails asking questions that have already been answered on this page.</p>
+					<div id="collapse16" class="panel-collapse collapse" style="margin-left: 15px;">
+						<div class="panel-body"><p style="text-align: left;">By filling in the form at <a href="contact.php" target="_blank">Contact page</a> or contacting us via <a href="contact.php" target="_blank"><span class="__cf_email__">[email&#160;protected]</span></a>. Please read the questions above before sending us an email. We have a policy of not responding to emails asking questions that have already been answered on this page.</p></div>
 					</div>
 				</div>
 			</div>	
@@ -1129,8 +1145,8 @@ hr{
 		  <div class="row">
 				<div class="col-xl-12">
 			    <p class="copy_right text-center" style="font-size: 14px">
-					  <span>Server time: 2026/04/09 07:18</span><br/>
-						<span id="ltc_price">LTC price: $</span><br/>
+					  <span id="server_time">Server time: 2026/01/01 00:00</span><br/>
+						<span id="trx_price">TRX price: $</span><br/>
 					  <span style="font-weight: bold">
 					  		Copyright ©2020 All rights reserved | 
 		            Litepick.io</span>
@@ -1141,5 +1157,121 @@ hr{
   </div>
 
 </footer>
+<script>
+(function () {
+
+/* =====================================================================
+   Logique d'ouverture et de fermeture des panneaux
+   ( navbar mobile + accordéon FAQ — animation CSS grid-template-rows )
+   ===================================================================== */
+
+  var DURATION = 400;
+
+  document.querySelectorAll('.panel-collapse.collapse').forEach(function (el) {
+    el.style.display          = 'grid';
+    el.style.gridTemplateRows = '0fr';
+    el.style.overflow         = 'hidden';
+    el.style.transition       = 'grid-template-rows ' + DURATION + 'ms ease';
+    var inner = el.querySelector('.panel-body');
+    if (inner) { inner.style.overflow = 'hidden'; }
+  });
+
+  function isOpen(el) { return el.dataset.open === '1'; }
+
+  function open(el) {
+    if (el.dataset.open === '1') return;
+    el.dataset.open           = '1';
+    el.style.gridTemplateRows = '1fr';
+  }
+
+  function close(el, cb) {
+    if (el.dataset.open !== '1') { if (cb) cb(); return; }
+    delete el.dataset.open;
+    el.style.gridTemplateRows = '0fr';
+    if (cb) {
+      var tid = setTimeout(function () { el.removeEventListener('transitionend', handler); cb(); }, DURATION + 50);
+      function handler() { clearTimeout(tid); el.removeEventListener('transitionend', handler); cb(); }
+      el.addEventListener('transitionend', handler);
+    }
+  }
+
+  var navToggle   = document.querySelector('.navbar-toggle');
+  var navCollapse = document.getElementById('bs-example-navbar-collapse-1');
+  if (navToggle && navCollapse) {
+    navToggle.addEventListener('click', function () {
+      navCollapse.classList.toggle('nav-open');
+    });
+  }
+
+  document.querySelectorAll('.panel-heading').forEach(function (heading) {
+    heading.style.cursor = 'pointer';
+    heading.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); });
+    });
+    heading.addEventListener('click', function (e) {
+      e.preventDefault();
+      var link     = heading.querySelector('a[href]');
+      var targetId = link ? link.getAttribute('href').replace('#', '') : null;
+      var target   = targetId ? document.getElementById(targetId) : null;
+      if (!target) {
+        var next = heading.nextElementSibling;
+        if (next && next.classList.contains('panel-collapse')) target = next;
+      }
+      if (!target) return;
+      var wasOpen = isOpen(target);
+      document.querySelectorAll('.panel-collapse.collapse').forEach(function (el) {
+        if (el !== target) close(el);
+      });
+      if (!wasOpen) { open(target); }
+      else          { close(target); }
+    });
+  });
+
+/* =====================================================================
+   Logique de la date et de l'heure locale de l'utilisateur
+   ( affichage en temps réel, mise à jour à chaque changement de minute )
+   ===================================================================== */
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function updateClock() {
+    var now  = new Date();
+    var yyyy = now.getFullYear();
+    var mm   = pad(now.getMonth() + 1);
+    var dd   = pad(now.getDate());
+    var hh   = pad(now.getHours());
+    var min  = pad(now.getMinutes());
+    var el   = document.getElementById('server_time');
+    if (el) { el.textContent = 'Server time: ' + yyyy + '/' + mm + '/' + dd + ' ' + hh + ':' + min; }
+
+    var msUntilNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
+    setTimeout(function () {
+      updateClock();
+    }, msUntilNextMinute);
+  }
+
+  updateClock();
+
+/* =====================================================================
+   Logique de récupération du prix TRX
+   ( source : API CoinGecko — 5 décimales — rafraîchissement toutes les minutes )
+   ===================================================================== */
+
+  function fetchTrxPrice() {
+    fetch('https://api.coingecko.com/api/v3/simple/price?ids=tron&vs_currencies=usd')
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        var price = data.tron.usd;
+        var el    = document.getElementById('trx_price');
+        if (el) { el.textContent = 'TRX price: $' + price.toFixed(5); }
+      })
+      .catch(function () {});
+  }
+
+  fetchTrxPrice();
+  setInterval(fetchTrxPrice, 60000);
+
+})();
+</script>
 </body>
 </html>
